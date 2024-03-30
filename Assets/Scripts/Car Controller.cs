@@ -4,12 +4,16 @@ using UnityEngine;
 
 [RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(LightingManager))]
 public class CarController : MonoBehaviour
 {
     public InputManager im;
 
+    public LightingManager lm;
+
     public List<WheelCollider> throttleWheels;
-    public List<WheelCollider> steeringWheels;
+    public List<GameObject> steeringWheels;
+    public List<GameObject> meshes;
 
     public float strengthCoefficent = 200000.0f;
     public float maxTurn = 20.0f;
@@ -29,6 +33,14 @@ public class CarController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (im.l)
+        {
+            lm.ToggleHeadlights();
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -37,9 +49,16 @@ public class CarController : MonoBehaviour
             wheelCollider.motorTorque = strengthCoefficent * Time.deltaTime * im.throttle;
         }
 
-        foreach(WheelCollider wheelCollider in steeringWheels)
+        foreach(GameObject wheel in steeringWheels)
         {
-            wheelCollider.steerAngle = maxTurn * im.steer;
+            wheel.GetComponent<WheelCollider>().steerAngle = maxTurn * im.steer;
+            wheel.transform.localEulerAngles = new Vector3(0.0f, im.steer * maxTurn, 0.0f);
+        }
+
+        foreach (GameObject mesh in meshes)
+        {
+            mesh.transform.Rotate(rb.velocity.magnitude * (transform.InverseTransformDirection(rb.velocity).z >= 0 ? 1.0f : -1.0f) 
+                / (2 * Mathf.PI * 0.34f), 0.0f, 0.0f);
         }
     }
 }
