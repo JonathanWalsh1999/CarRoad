@@ -1093,11 +1093,11 @@ WheelCollider:
   m_Mass: 1
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 6
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 1
+    m_AsymptoteSlip: 6
     m_AsymptoteValue: 1
-    m_Stiffness: 5
+    m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 1
     m_ExtremumValue: 1
@@ -1243,11 +1243,11 @@ WheelCollider:
   m_Mass: 1
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 6
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 1
+    m_AsymptoteSlip: 6
     m_AsymptoteValue: 1
-    m_Stiffness: 5
+    m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 1
     m_ExtremumValue: 1
@@ -1372,11 +1372,11 @@ WheelCollider:
   m_Mass: 1
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 6
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 1
+    m_AsymptoteSlip: 6
     m_AsymptoteValue: 1
-    m_Stiffness: 5
+    m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 1
     m_ExtremumValue: 1
@@ -1744,11 +1744,11 @@ WheelCollider:
   m_Mass: 1
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 6
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 1
+    m_AsymptoteSlip: 6
     m_AsymptoteValue: 1
-    m_Stiffness: 5
+    m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 1
     m_ExtremumValue: 1
@@ -3398,7 +3398,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -3449,6 +3449,9 @@ MonoBehaviour:
   distance: 5
   height: 2
   dampening: 0.5
+  h2: 0.6
+  d2: 0.08
+  l: -0.3
 --- !u!1001 &2058542693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5268,6 +5271,10 @@ MonoBehaviour:
   maxTurn: 20
   cm: {fileID: 1149846438}
   rb: {fileID: 4475443939862197688}
+  brakeStrength: 8000
+  tailLights:
+  - {fileID: 4475044716324255264}
+  - {fileID: 4474837362404621000}
 --- !u!114 &4475443939862197690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5283,6 +5290,7 @@ MonoBehaviour:
   throttle: 0
   steer: 0
   l: 0
+  brake: 0
 --- !u!114 &4475443939862197691
 MonoBehaviour:
   m_ObjectHideFlags: 0

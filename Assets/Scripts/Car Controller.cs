@@ -21,6 +21,9 @@ public class CarController : MonoBehaviour
     public Transform cm;
     public Rigidbody rb;
 
+    public float brakeStrength;
+    public List<GameObject> tailLights;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,16 @@ public class CarController : MonoBehaviour
         {
             lm.ToggleHeadlights();
         }
+
+        foreach (GameObject tl in tailLights)
+        {
+            tl.GetComponent<Renderer>().material.SetColor("_EmissionColor", im.brake ? new Color(1.0f, 0.111f, 0.111f) : Color.black);
+            if (im.brake)
+            {
+                Debug.Log("hello");
+            }
+        }
+        
     }
 
     // Update is called once per frame
@@ -46,7 +59,16 @@ public class CarController : MonoBehaviour
     {
         foreach(WheelCollider wheelCollider in throttleWheels)
         {
-            wheelCollider.motorTorque = strengthCoefficent * Time.deltaTime * im.throttle;
+            if(im.brake)
+            {
+                wheelCollider.motorTorque = 0.0f;
+                wheelCollider.brakeTorque = brakeStrength * Time.deltaTime;
+            }
+            else
+            {
+                wheelCollider.motorTorque = strengthCoefficent * Time.deltaTime * im.throttle;
+                wheelCollider.brakeTorque = 0.0f;
+            }
         }
 
         foreach(GameObject wheel in steeringWheels)
