@@ -65,7 +65,7 @@ public class CarController : MonoBehaviour
             if(im.brake)
             {
                 wheelCollider.motorTorque = 0.0f;
-                wheelCollider.brakeTorque = brakeStrength * Time.deltaTime;
+                wheelCollider.brakeTorque = brakeStrength * Time.deltaTime * 100000000000000000000.0f;
             }
             else
             {
