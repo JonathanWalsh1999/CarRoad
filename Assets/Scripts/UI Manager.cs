@@ -5,13 +5,19 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI fpsText;
 
     public virtual void ChangeText(float speed)
     {
         float s = speed * 2.24694f; //convert m/s to mph
 
-        text.text = Mathf.Abs(Mathf.Round(s)) + " MPH";
+        speedText.text = Mathf.Abs(Mathf.Round(s)) + " MPH";
+    }
+
+    private void Update()
+    {
+        fpsText.text = (Mathf.Round(1.0f / Time.deltaTime)).ToString() + " FPS";
     }
 
 }
