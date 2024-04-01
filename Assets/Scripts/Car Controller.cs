@@ -24,6 +24,8 @@ public class CarController : MonoBehaviour
     public float brakeStrength;
     public List<GameObject> tailLights;
 
+    public UIManager uim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +53,8 @@ public class CarController : MonoBehaviour
                 Debug.Log("hello");
             }
         }
-        
+
+        uim.ChangeText(transform.InverseTransformVector(rb.velocity).z);
     }
 
     // Update is called once per frame
