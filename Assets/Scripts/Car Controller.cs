@@ -48,10 +48,6 @@ public class CarController : MonoBehaviour
         foreach (GameObject tl in tailLights)
         {
             tl.GetComponent<Renderer>().material.SetColor("_EmissionColor", im.brake ? new Color(1.0f, 0.111f, 0.111f) : Color.black);
-            if (im.brake)
-            {
-                Debug.Log("hello");
-            }
         }
 
         uim.ChangeText(transform.InverseTransformVector(rb.velocity).z);
@@ -65,7 +61,7 @@ public class CarController : MonoBehaviour
             if(im.brake)
             {
                 wheelCollider.motorTorque = 0.0f;
-                wheelCollider.brakeTorque = brakeStrength * Time.deltaTime * 100000000000000000000.0f;
+                wheelCollider.brakeTorque = brakeStrength * Time.deltaTime;
             }
             else
             {
