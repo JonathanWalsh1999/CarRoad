@@ -11,8 +11,8 @@ public class CarController : MonoBehaviour
 
     public LightingManager lm;
 
-    public List<WheelCollider> throttleWheels;
-    public List<GameObject> steeringWheels;
+    public List<GameObject> wheels;
+
     public List<GameObject> meshes;
 
     public float strengthCoefficent = 200000.0f;
@@ -34,7 +34,7 @@ public class CarController : MonoBehaviour
 
         if(cm)
         {
-            rb.centerOfMass = cm.localPosition;
+            rb.centerOfMass = new Vector3(0, -0.5f, 0);
         }
     }
 
@@ -56,30 +56,14 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        foreach(WheelCollider wheelCollider in throttleWheels)
-        {
-            if(im.brake)
-            {
-                wheelCollider.motorTorque = 0.0f;
-                wheelCollider.brakeTorque = brakeStrength * Time.deltaTime;
-            }
-            else
-            {
-                wheelCollider.motorTorque = strengthCoefficent * Time.deltaTime * im.throttle;
-                wheelCollider.brakeTorque = 0.0f;
-            }
-        }
-
-        foreach(GameObject wheel in steeringWheels)
-        {
-            wheel.GetComponent<WheelCollider>().steerAngle = maxTurn * im.steer;
-            wheel.transform.localEulerAngles = new Vector3(0.0f, im.steer * maxTurn, 0.0f);
-        }
-
+        
         foreach (GameObject mesh in meshes)
         {
             mesh.transform.Rotate(rb.velocity.magnitude * (transform.InverseTransformDirection(rb.velocity).z >= 0 ? 1.0f : -1.0f) 
                 / (2 * Mathf.PI * 0.34f), 0.0f, 0.0f);
         }
+
+
+
     }
 }
