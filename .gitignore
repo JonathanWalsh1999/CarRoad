@@ -10,6 +10,7 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
@@ -76,4 +77,10 @@ Assets/TerrainSampleAssets/
 Assets/Textures/
 Assets/UK Terraced Houses FREE/
 
-.Assets
+/Assets/Images*
+/Assets/Models*
+/Assets/Music*
+/Assets/Packages*
+/Assets/Sprites*
+/Assets/Textures*
+/Assets/Skybox*
